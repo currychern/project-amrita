@@ -14,7 +14,13 @@
 <template name="Add_donation">
   <div class="new-donation-container">
     <i class="fa fa-close"></i>
-    {{> quickForm collection=donations id="insertDonationForm" type="insert" buttonContent="Next"}}
+    {{> quickForm
+      collection=donations
+      id="insertDonationForm"
+      type="method"
+      meteormethod="donations.insert"
+      buttonContent="Next"
+    }}
   </div>
 </template>
 
@@ -22,7 +28,15 @@
   <article class="donation">
     {{#if editDonation}}
       <h3>Edit Donation</h3>
-      {{> quickForm collection=donations id=updateDonationId type="update" doc=this autosave=true}}
+      {{> quickForm
+        collection=donations
+        doc=this
+        id=updateDonationId
+        type="method-update"
+        meteormethod="donations.update"
+        singleMethodArgument=true
+        autosave=true
+      }}
     {{else}}
       <h3>{{nickname}} ({{donationType}})</h3>
         <p>

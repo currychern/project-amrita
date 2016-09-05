@@ -1,7 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
-import { check } from 'meteor/check';
 
 export const Donations = new Mongo.Collection('donations');
 
@@ -22,13 +21,6 @@ Donations.allow({
 });
 
 Donations.schema = new SimpleSchema({
-	_id: {
-		type: String,
-		regEx: SimpleSchema.RegEx.Id,
-		autoform: {
-			type: 'hidden'
-		}
-	},
 	nickname: {
 		type: String
 	},
@@ -48,33 +40,71 @@ Donations.schema = new SimpleSchema({
 	foods: {
 		type: [Foods.schema]
 	},
+
 	createdBy: {
 		type: String,
 		autoValue: function() {
-			return 'XXX-XXX'; //this.userId;
+			if (this.isInsert) {
+				return this.userId;
+			} else if (this.isUpsert) {
+				return {$setOnInsert: this.userId};
+			} else {
+				this.unset();	// Prevent user from supplying their own value
+			}
 		},
-		autoform: {
-			type: 'hidden'
-		}
-	},
-	createdAt: {
-		type: Date,
-		autoValue: function() {
-			return new Date();
-		},
-		autoform: {
-			type: 'hidden'
-		}
-	},
-	updatedBy: {
-		type: String,
+		denyInsert: false,
+		denyUpdate: true,
 		optional: true,
 		autoform: {
 			type: 'hidden'
 		}
 	},
+
+	updatedBy: {
+		type: String,
+		autoValue: function() {
+			if (this.isUpdate) {
+				return this.userId;
+			}
+		},
+		denyInsert: true,
+		optional: true,
+		autoform: {
+			type: 'hidden'
+		}
+	},
+
+	// Force value to be current date (on server) upon insert
+	// and prevent updates thereafter.
+	createdAt: {
+		type: Date,
+		autoValue: function() {
+			if (this.isInsert) {
+				return new Date;
+			} else if (this.isUpsert) {
+				return {$setOnInsert: new Date};
+			} else {
+				this.unset();	// Prevent user from supplying their own value
+			}
+		},
+		denyInsert: false,
+		denyUpdate: true,
+		optional: true,
+		autoform: {
+			type: 'hidden'
+		}
+	},
+
+	// Force value to be current date (on server) upon update
+	// and don't allow it to be set upon insert.
 	updatedAt: {
 		type: Date,
+		autoValue: function() {
+			if (this.isUpdate) {
+				return new Date();
+			}
+		},
+		denyInsert: true,
 		optional: true,
 		autoform: {
 			type: 'hidden'
@@ -85,15 +115,11 @@ Donations.schema = new SimpleSchema({
 Donations.attachSchema(Donations.schema);
 
 Donations.helpers({
-	editableBy(userId) {
+	updatableBy(userId) {
 		return this.createdBy === userId;
-	}
-});
-
-Meteor.methods({
-	deleteDonation: function(id) {
-		check(id, String);
-		Donations.remove(id);
+	},
+	removableBy(userId) {
+		return this.createdBy === userId;
 	}
 });
 

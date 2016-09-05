@@ -1,1 +1,1 @@
-import '../imports/api/donations.js';
+import '../imports/startup/server/';

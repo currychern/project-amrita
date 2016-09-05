@@ -5,6 +5,7 @@ import { Blaze } from 'meteor/blaze';
 import { $ } from 'meteor/jquery';
 
 import { Donations } from '../api/donations.js';
+import { update, remove } from '../api/methods.js';
 
 import './home.html';
 
@@ -61,7 +62,7 @@ Template.Donation.helpers({
 
 Template.Donation.events({
 	'click .fa-trash': function() {
-		Meteor.call('deleteDonation', this._id);
+		remove.call({donationId: this._id});
 	},
 	'click .fa-pencil': function(event, instance) {
 		instance.editDonation.set(!instance.editDonation.get());
