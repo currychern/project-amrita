@@ -1,5 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
+import { Factory } from 'meteor/dburles:factory';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 
 export const Donations = new Mongo.Collection('donations');
@@ -113,6 +114,8 @@ Donations.schema = new SimpleSchema({
 });
 
 Donations.attachSchema(Donations.schema);
+
+Factory.define('donation', Donations, {});
 
 Donations.helpers({
 	updatableBy(userId) {

@@ -34,8 +34,8 @@ export const update = new ValidatedMethod({
 	run( autoformArgs ) {
 		const donation = Donations.findOne(autoformArgs._id);
 		if(!donation.updatableBy(this.userId)) {
-			throw new Meteor.Error('donations.remove.accessDenied',
-				'You don\'t have permission to remove this list.');
+			throw new Meteor.Error('donations.update.accessDenied',
+				'You don\'t have permission to update this list.');
 		}
 
 		Donations.update(autoformArgs._id, autoformArgs.modifier);

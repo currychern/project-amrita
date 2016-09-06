@@ -5,7 +5,7 @@ import { Blaze } from 'meteor/blaze';
 import { $ } from 'meteor/jquery';
 
 import { Donations } from '../api/donations.js';
-import { update, remove } from '../api/methods.js';
+import { remove } from '../api/methods.js';
 
 import './home.html';
 
