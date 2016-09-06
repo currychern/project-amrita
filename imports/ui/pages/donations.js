@@ -4,18 +4,18 @@ import { ReactiveVar } from 'meteor/reactive-var';
 import { Blaze } from 'meteor/blaze';
 import { $ } from 'meteor/jquery';
 
-import { Donations } from '../api/donations.js';
-import { remove } from '../api/methods.js';
+import { Donations } from '../../api/donations.js';
+import { remove } from '../../api/methods.js';
 
-import './home.html';
+import './donations.html';
 
-Template.App_home.onCreated(function() {
+Template.App_donations.onCreated(function() {
 	Meteor.subscribe('donations');
 
 	this.addDonation = new ReactiveVar(false);
 });
 
-Template.App_home.helpers({
+Template.App_donations.helpers({
 	donationList: function() {
 		return Donations.find();
 	},
@@ -24,7 +24,7 @@ Template.App_home.helpers({
 	}
 });
 
-Template.App_home.events({
+Template.App_donations.events({
 	'click .new-donation': function(event, instance) {
 		instance.addDonation.set(true);
 	}
