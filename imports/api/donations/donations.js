@@ -1,4 +1,3 @@
-import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 import { Factory } from 'meteor/dburles:factory';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
@@ -125,9 +124,3 @@ Donations.helpers({
 		return this.createdBy === userId;
 	}
 });
-
-if (Meteor.isServer) {
-	Meteor.publish('donations', function () {
-		return Donations.find();
-	});
-}

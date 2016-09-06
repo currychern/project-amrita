@@ -4,8 +4,8 @@ import { ReactiveVar } from 'meteor/reactive-var';
 import { Blaze } from 'meteor/blaze';
 import { $ } from 'meteor/jquery';
 
-import { Donations } from '../../api/donations.js';
-import { remove } from '../../api/methods.js';
+import { Donations } from '../../api/donations/donations.js';
+import { remove } from '../../api/donations/methods.js';
 
 import './donations.html';
 
