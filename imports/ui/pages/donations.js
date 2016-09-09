@@ -3,6 +3,8 @@ import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
 import { Blaze } from 'meteor/blaze';
 import { $ } from 'meteor/jquery';
+import { AutoForm } from 'meteor/aldeed:autoform';
+import { FlowRouter } from 'meteor/kadira:flow-router';
 
 import { Donations } from '../../api/donations/donations.js';
 import { remove } from '../../api/donations/methods.js';
@@ -11,7 +13,6 @@ import './donations.html';
 
 Template.App_donations.onCreated(function() {
 	Meteor.subscribe('donations');
-
 	this.addDonation = new ReactiveVar(false);
 });
 
@@ -21,6 +22,12 @@ Template.App_donations.helpers({
 	},
 	addDonation: function() {
 		return Template.instance().addDonation.get();
+	}
+});
+
+AutoForm.addHooks('insertDonationForm', {
+	onSuccess: function(formType, result) {
+		FlowRouter.go('/deliver/' + result);
 	}
 });
 

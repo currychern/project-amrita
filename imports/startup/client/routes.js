@@ -5,8 +5,10 @@ import { BlazeLayout } from 'meteor/kadira:blaze-layout';
 
 import '../../ui/pages/home.js';
 import '../../ui/pages/donations.js';
+import '../../ui/pages/deliveries.js';
 import '../../ui/layouts/main.js';
 
+/*
 Accounts.onLogin(function() {
 	FlowRouter.go('/donate');
 });
@@ -20,6 +22,7 @@ FlowRouter.triggers.enter([function() {
 		FlowRouter.go('/');
 	}
 }]);
+*/
 
 FlowRouter.route('/', {
 	name: 'App.home',
@@ -32,5 +35,12 @@ FlowRouter.route('/donate', {
 	name: 'App.donations',
 	action() {
 		BlazeLayout.render('Main_layout', { main: 'App_donations'});
+	}
+});
+
+FlowRouter.route('/deliver/:donationId', {
+	name: 'App.deliveries',
+	action() {
+		BlazeLayout.render('Main_layout', { main: 'App_deliveries'});
 	}
 });

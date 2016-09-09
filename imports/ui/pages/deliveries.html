@@ -1,0 +1,41 @@
+<template name="App_deliveries">
+  <div class="container">
+    {{> Add_delivery}}
+    {{#each deliveryList}}
+      {{> Delivery}}
+    {{/each}}
+  </div>
+</template>
+
+<template name="Add_delivery">
+  <div class="form-add">
+    {{> quickForm
+      collection=deliveries
+      id="insertDeliveryForm"
+      type="method"
+      meteormethod="deliveries.insert"
+    }}
+  </div>
+</template>
+
+<template name="Delivery">
+  <article class="delivery">
+    {{#if editDelivery}}
+      <h3>Edit Delivery</h3>
+      {{> quickForm
+        collection=deliveries
+        doc=this
+        id=updateDeliveryId
+        type="method-update"
+        meteormethod="deliveries.update"
+        singleMethodArgument=true
+        autosave=true
+      }}
+    {{else}}
+      <h3>{{nickname}}</h3>
+        <a href="/delivery/{{_id}}">View Details</a>
+    {{/if}}
+    <i class="fa fa-pencil"></i>
+    <i class="fa fa-trash"></i>
+  </article>
+</template>

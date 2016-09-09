@@ -22,7 +22,7 @@ export const insert = new ValidatedMethod({
 			throw new Meteor.Error('donations.insert.notLoggedIn', 'Must be logged in.');
 		}
 
-		Donations.insert(autoformArgs);
+		return Donations.insert(autoformArgs);
 	}
 });
 
