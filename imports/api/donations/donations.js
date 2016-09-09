@@ -14,6 +14,22 @@ Foods.schema = new SimpleSchema({
 	}
 });
 
+const Address = {};
+Address.schema = new SimpleSchema({
+	street: {
+		type: String
+	},
+	city: {
+		type: String
+	},
+	state: {
+		type: String
+	},
+	zip: {
+		type: String
+	}
+});
+
 Donations.deny({
 	insert() { return true; },
 	update() { return true; },
@@ -40,7 +56,25 @@ Donations.schema = new SimpleSchema({
 	foods: {
 		type: [Foods.schema]
 	},
+	vehicle: {
+		type: String,
+		autoform: {
+			options: {
+				sedan: 'Sedan',
+				suv: 'SUV/Minivan',
+				van: 'Van/Truck'
+			}
+		}
+	},
+	address: {
+		type: Address.schema
+	},
+	pickupTime: {
+		type: String
+	},
 
+	// Force value to be current user id upon insert
+	// and prevent updates thereafter.
 	createdBy: {
 		type: String,
 		autoValue: function() {
@@ -60,6 +94,8 @@ Donations.schema = new SimpleSchema({
 		}
 	},
 
+	// Force value to be current user id upon update
+	// and don't allow it to be set upon insert.
 	updatedBy: {
 		type: String,
 		autoValue: function() {
