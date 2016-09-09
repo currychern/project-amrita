@@ -3,7 +3,7 @@
     {{#if addDonation}}
       {{> Add_donation}}
     {{else}}
-      <button class="new-donation">New Donation</button>
+      <button class="button-add new-donation">New Donation</button>
     {{/if}}
     {{#each donationList}}
       {{> Donation}}
@@ -12,7 +12,7 @@
 </template>
 
 <template name="Add_donation">
-  <div class="new-donation-container">
+  <div class="form-add">
     <i class="fa fa-close"></i>
     {{> quickForm
       collection=donations
