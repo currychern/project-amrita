@@ -1,7 +1,7 @@
 <template name="Accounts_signin">
   {{#if $not currentUser}}
-    <div class="signin-modal {{$.Session.get 'modal-toggle'}}">
-      <i class="fa fa-close close-login"></i>
+    <i class="fa fa-close close modal-close grey-text"></i>
+    <div class="modal-container">
       {{> atForm}}
     </div>
   {{/if}}

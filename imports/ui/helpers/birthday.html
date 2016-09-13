@@ -1,6 +1,10 @@
-<template name="Helper_date">
-  <label for="birthday">Birthday</label>
-  <i class="fa fa-question-circle"></i>
+<template name="Helper_birthday">
+  <div class="at-input birthday">
+    <input type="text" id="at-field-{{_id}}" name="at-field-{{_id}}" hidden>
+    <b>Birthday</b>
+    <a class="birthday-tooltip tooltipped" data-position="right">
+      <i class="fa fa-question-circle"></i>
+    </a>
     <div class="input-group">
       <select name="month" id="month" onchange="" size="1">
         <option value="" disabled selected style="display: none;">Month</option>
@@ -17,7 +21,8 @@
         <option value="11">November</option>
         <option value="12">December</option>
       </select>
-      <input type="text" placeholder="Day">
-      <input type="text" placeholder="Year">
+      <input id="day" type="text" maxlength=2 placeholder="Day">
+      <input id="year" type="text" maxlength=4 placeholder="Year">
     </div>
+  </div>
 </template>

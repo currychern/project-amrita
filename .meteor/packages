@@ -23,16 +23,19 @@ aldeed:collection2
 aldeed:autoform
 dburles:collection-helpers
 
-accounts-ui
 accounts-password
+useraccounts:core
+useraccounts:unstyled
+raix:handlebar-helpers
 
 kadira:flow-router
 kadira:blaze-layout
 reactive-dict
 
-stolinski:stylus-multi
 fortawesome:fontawesome
 matb33:bootstrap-glyphicons
+fourseven:scss
+poetic:materialize-scss
 
 dburles:factory
 practicalmeteor:chai

@@ -7,6 +7,7 @@ import '../../ui/pages/home.js';
 import '../../ui/pages/donations.js';
 import '../../ui/layouts/main.js';
 
+/*
 Accounts.onLogin(function() {
 	FlowRouter.go('/donate');
 });
@@ -20,6 +21,7 @@ FlowRouter.triggers.enter([function() {
 		FlowRouter.go('/');
 	}
 }]);
+*/
 
 FlowRouter.route('/', {
 	name: 'App.home',

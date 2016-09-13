@@ -1,0 +1,52 @@
+// Home
+
+.billboard {
+  text-align: center;
+  padding-top: 13%;
+  padding-bottom: 13%;
+  margin-bottom: 50px;
+}
+
+// Header
+.logo {
+  padding-left: 20px;
+  a.hover {
+    text-decoration: none;
+  }
+}
+
+#nav-mobile {
+  padding-right: 20px;
+}
+
+// Modal
+.modal-container {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 20px;
+
+}
+
+.close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: block;
+  cursor: pointer;
+  font-size: 2em;
+  padding: 20px;
+}
+
+@import "{}/client/stylesheets/palette.scss";
+@import "{poetic:materialize-scss}/sass/materialize.scss";
+
+.modal {
+  max-height: 80%;
+}
+// Sign In Form
+.at-input:not(:nth-of-type(6)) {
+  label {
+    display: none;
+  }
+}

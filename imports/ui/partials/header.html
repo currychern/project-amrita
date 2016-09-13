@@ -1,7 +1,23 @@
 <template name="Header">
-  <header class="header-footer">
-    <h1>Project Amrita</h1>
-    {{> MainNav}}
-  </header>
-  {{> Accounts_signin}}
+  <nav>
+    <div class="nav-wrapper z-depth-2">
+      <div class="logo"><a href="#!" class="brand-logo">Project Amrita</a></div>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="/">Home</a></li>
+        <li><a href="/donate">Donate</a></li>
+        <li><a href="/dashboard">Dashboard</a></li>
+        {{#if currentUser}}
+          <a class="signout">Sign Out</a>
+        {{else}}
+          <li>
+            <a class="modal-trigger" href="#signin">Sign In</a>
+          </li>
+        {{/if}}
+      </ul>
+    </div>
+  </nav>
+
+  <div id="signin" class="modal">
+    {{> Accounts_signin}}
+  </div>
 </template>
