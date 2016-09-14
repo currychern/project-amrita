@@ -4,13 +4,17 @@
       <div class="logo"><a href="#!" class="brand-logo">Project Amrita</a></div>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li><a href="/">Home</a></li>
-        <li><a href="/donate">Donate</a></li>
-        <li><a href="/dashboard">Dashboard</a></li>
+        {{#if isInRole 'user'}}
+          <li><a href="/donate">Donate</a></li>
+        {{/if}}
+        {{#if isInRole 'admin'}}
+          <li><a href="/dashboard">Dashboard</a></li>
+        {{/if}}
         {{#if currentUser}}
           <a class="signout">Sign Out</a>
         {{else}}
           <li>
-            <a class="modal-trigger" href="#signin">Sign In</a>
+            <a class="modal-trigger" data-target="signin">Sign In</a>
           </li>
         {{/if}}
       </ul>

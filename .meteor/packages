@@ -22,6 +22,7 @@ aldeed:simple-schema
 aldeed:collection2
 aldeed:autoform
 dburles:collection-helpers
+alanning:roles
 
 accounts-password
 useraccounts:core

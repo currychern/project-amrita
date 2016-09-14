@@ -1,6 +1,6 @@
-import { Session } from 'meteor/session';
 import { AccountsTemplates } from 'meteor/useraccounts:core';
 import { FlowRouter } from 'meteor/kadira:flow-router';
+import { $ } from 'meteor/jquery';
 
 import '../helpers/birthday.js';
 
@@ -12,8 +12,12 @@ AccountsTemplates.configure({
 		signInLink_link: 'Sign In'
 	},
 	onLogoutHook: function() {
-		//Session.set('signin-toggle', '');
 		FlowRouter.go('/');
+	},
+	onSubmitHook: function(error, state) {
+		if (!error && (state == 'signUp' || state == 'signIn')) {
+			$('#signin').closeModal();
+		}
 	}
 });
 
