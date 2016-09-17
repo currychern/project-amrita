@@ -5,6 +5,7 @@ import { BlazeLayout } from 'meteor/kadira:blaze-layout';
 
 import '../../ui/pages/home.js';
 import '../../ui/pages/donations.js';
+import '../../ui/roles/donor.js';
 import '../../ui/layouts/main.js';
 
 /*
@@ -31,8 +32,12 @@ FlowRouter.route('/', {
 });
 
 FlowRouter.route('/donate', {
-	name: 'App.donations',
+	name: 'Role.donor',
+	action() {
+		BlazeLayout.render('Main_layout', { main: 'Role_donor'});
+	}
+	/*name: 'App.donations',
 	action() {
 		BlazeLayout.render('Main_layout', { main: 'App_donations'});
-	}
+	}*/
 });

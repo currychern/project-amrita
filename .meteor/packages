@@ -32,11 +32,13 @@ raix:handlebar-helpers
 kadira:flow-router
 kadira:blaze-layout
 reactive-dict
+underscore
 
 fortawesome:fontawesome
 matb33:bootstrap-glyphicons
 fourseven:scss
 poetic:materialize-scss
+gildaspk:autoform-materialize
 
 dburles:factory
 practicalmeteor:chai

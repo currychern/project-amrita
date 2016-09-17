@@ -1,0 +1,54 @@
+<template name="Role_donor">
+  <div class="container page">
+    {{#autoForm schema=donor id="addDonorForm" type="method" meteormethod="test.methods" class="donor"}}
+      <div class="card-panel">
+        <div class="card-content">
+          <div class="card-title">Organization</div>
+          {{> afQuickField name='organization.name'}}
+          <div class="row">
+            <div class="input-field col s12 m6 l6">
+              {{> afFieldInput name='organization.phone'}}
+              <label for="organization.phone">Phone</label>
+            </div>
+            <div class="input-field col s12 m6 l6">
+              {{> afFieldInput name='organization.email'}}
+              <label for="organization.email">Email</label>
+              {{#if afFieldIsInvalid name='organization.email'}}
+                  <div class="red-text">
+                      <i class="tiny material-icons">warning</i> {{{afFieldMessage name='organization.email'}}}
+                  </div>
+              {{/if}}
+            </div>
+          </div>
+          <div class="card-panel">
+            <div class="card-content">
+              <div class="card-title sub-title">Address</div>
+              {{> afQuickField name='organization.address.street1'}}
+              {{> afQuickField name='organization.address.street2'}}
+              <div class="row">
+                <div class="input-field col s12 m7 l7">
+                  {{> afFieldInput name='organization.address.city' id='address.city'}}
+                  <label for="address.city">City</label>
+                  {{#if afFieldIsInvalid name='organization.address.city'}}
+                      <div class="red-text">
+                          <i class="tiny material-icons">warning</i> {{{afFieldMessage name='organization.address.city'}}}
+                      </div>
+                  {{/if}}
+                </div>
+                <div class="input-field col s12 m2 l2">
+                  {{> afFieldInput name='organization.address.state' id='address.state'}}
+                  <label for="address.state">State</label>
+                </div>
+                <div class="input-field col s12 m3 l3">
+                  {{> afFieldInput name='organization.address.zip' id='address.zip'}}
+                  <label for="address.zip">Zip</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    {{/autoForm}}
+  </div>
+</template>
