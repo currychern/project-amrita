@@ -1,12 +1,12 @@
 import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
+import { Roles } from 'meteor/alanning:roles';
 
 import { Donor } from './_donor.js';
 
 Meteor.methods({
-	'test.methods': function(doc) {
+	'register.donor': function(doc) {
 		check(doc, Donor.schema);
-
 		let userId = Meteor.userId();
 
 		Meteor.users.update(userId, {
@@ -14,5 +14,7 @@ Meteor.methods({
 				'profile.donor': doc
 			}
 		});
+
+		Roles.addUsersToRoles(userId, 'donor');
 	}
 });

@@ -16,13 +16,13 @@ Accounts.onLogin(function() {
 Accounts.onLogout(function() {
 	FlowRouter.go('/');
 });
+*/
 
 FlowRouter.triggers.enter([function() {
 	if(!Meteor.userId()) {
 		FlowRouter.go('/');
 	}
 }]);
-*/
 
 FlowRouter.route('/', {
 	name: 'App.home',
@@ -31,13 +31,21 @@ FlowRouter.route('/', {
 	}
 });
 
-FlowRouter.route('/donate', {
+let donate = FlowRouter.group({
+	name: 'donate',
+	prefix: '/donate'
+});
+
+donate.route('/', {
+	name: 'App.donations',
+	action() {
+		BlazeLayout.render('Main_layout', { main: 'App_donations'});
+	}
+});
+
+donate.route('/register', {
 	name: 'Role.donor',
 	action() {
 		BlazeLayout.render('Main_layout', { main: 'Role_donor'});
 	}
-	/*name: 'App.donations',
-	action() {
-		BlazeLayout.render('Main_layout', { main: 'App_donations'});
-	}*/
 });

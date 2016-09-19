@@ -3,6 +3,7 @@ import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
 import { Blaze } from 'meteor/blaze';
 import { $ } from 'meteor/jquery';
+import { AutoForm } from 'meteor/aldeed:autoform';
 
 import { Donations } from '../../api/donations/donations.js';
 import { remove } from '../../api/donations/methods.js';
@@ -11,7 +12,6 @@ import './donations.html';
 
 Template.App_donations.onCreated(function() {
 	Meteor.subscribe('donations');
-
 	this.addDonation = new ReactiveVar(false);
 });
 
@@ -33,11 +33,30 @@ Template.App_donations.events({
 Template.Add_donation.helpers({
 	donations: function() {
 		return Donations;
+	},
+	prepopulate: function() {
+		let donor = Meteor.user().profile.donor;
+		let address = donor.organization.address;
+		return {
+			'address.street1': address.street1,
+			'address.street2': address.street2,
+			'address.city': address.city,
+			'address.state': address.state,
+			'address.zip': address.zip
+		};
+	}
+});
+
+AutoForm.addHooks(['insertDonationForm'], {
+	onSuccess: function() {
+		let parent = $('.container')[0];
+		let parentInstance = Blaze.getView(parent).templateInstance();
+		parentInstance.addDonation.set(false);
 	}
 });
 
 Template.Add_donation.events({
-	'click .fa-close': function() {
+	'click .close-add-donation': function() {
 		let parent = $('.container')[0];
 		let parentInstance = Blaze.getView(parent).templateInstance();
 		parentInstance.addDonation.set(false);
