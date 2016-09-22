@@ -39,7 +39,6 @@ fortawesome:fontawesome
 matb33:bootstrap-glyphicons
 fourseven:scss
 poetic:materialize-scss
-gildaspk:autoform-materialize
 
 dburles:factory
 practicalmeteor:chai
@@ -48,3 +47,5 @@ practicalmeteor:mocha
 meteortoys:allthings
 
 mdg:validated-method
+
+currychern:autoform-materialize

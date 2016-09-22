@@ -62,18 +62,10 @@
   float: right;
 }
 
-.btn {
-  display: inline-flex;
-  vertical-align: middle;
-}
-
-.autoform-remove-item {
-  float: right;
-}
-
-.collection-item {
-  clear: both;
-}
-.autoform-add-item {
-  width: 100%;
+form {
+  .red-text {
+    i {
+      font-size: 1em;
+    }
+  }
 }

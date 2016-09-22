@@ -55,6 +55,10 @@ AutoForm.addHooks(['insertDonationForm'], {
 	}
 });
 
+Template.Add_donation.onRendered( function () {
+	$('select[name$=type] :first-child').prop('disabled', true);
+});
+
 Template.Add_donation.events({
 	'click .close-add-donation': function() {
 		let parent = $('.container')[0];

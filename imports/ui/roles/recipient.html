@@ -1,0 +1,15 @@
+<template name="Role_recipient">
+  <div class="container page">
+    {{#if isInRole 'recipient'}}
+      {{routeToParent}}
+    {{else}}
+      {{>quickForm
+        schema=recipient
+        id="addRecipientForm"
+        doc=prepopulate
+        type="method"
+        meteormethod="register.recipient"
+        class="recipient"}}
+    {{/if}}
+  </div>
+</template>

@@ -1,3 +1,4 @@
+import { _ } from 'meteor/underscore';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 
 import { Address } from '../schemas/_address.js';
@@ -9,15 +10,15 @@ Donation.schema = new SimpleSchema({
 		type: String
 	},
 	type: {
-		type: String,
+		type: [String],
+		allowedValues: ['Produce', 'Prepared', 'Packaged', 'Frozen', 'Canned', 'Mixed'],
 		autoform: {
-			options: {
-				produce: 'Produce',
-				frozen: 'Frozen',
-				prepared: 'Prepared',
-				packaged: 'Packaged',
-				canned: 'Canned',
-				mixed:'Mixed'
+			afFieldInput: {
+				options: function () {
+					return _.map(['(Check all that apply)', 'Produce', 'Prepared', 'Packaged', 'Frozen', 'Canned', 'Mixed'], function (s) {
+						return {label: s, value: s};
+					});
+				}
 			}
 		}
 	},
@@ -31,9 +32,9 @@ Donation.schema = new SimpleSchema({
 		type: String,
 		autoform: {
 			options: {
-				sedan: 'Sedan',
-				suv: 'SUV/Minivan',
-				van: 'Van/Truck'
+				Sedan: 'Sedan',
+				Suv: 'SUV/Minivan',
+				Van: 'Van/Truck'
 			}
 		}
 	},
@@ -43,6 +44,11 @@ Donation.schema = new SimpleSchema({
 	status: {
 		type: String,
 		optional: true,
+		autoValue: function() {
+			if (this.isInsert) {
+				return 'Pending';
+			}
+		},
 		autoform: {
 			type: 'hidden'
 		}

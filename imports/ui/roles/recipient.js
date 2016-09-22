@@ -1,21 +1,20 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
-import { Materialize } from 'meteor/poetic:materialize-scss';
 import { $ } from 'meteor/jquery';
 
-import { Donor } from '../../api/schemas/_donor.js';
+import { Recipient } from '../../api/schemas/_recipient.js';
 
-import './donor.html';
+import './recipient.html';
 
-Template.Role_donor.helpers({
-	donor: function() {
-		return Donor.schema;
+Template.Role_recipient.helpers({
+	recipient: function() {
+		return Recipient.schema;
 	},
 	prepopulate: function() {
 		if (Meteor.userId()) {
-			if (Meteor.user().profile.recipient) {
-				let recipient = Meteor.user().profile.recipient;
-				let organization = recipient.organization;
+			if (Meteor.user().profile.donor) {
+				let donor = Meteor.user().profile.donor;
+				let organization = donor.organization;
 				return {
 					'organization.name': organization.name,
 					'organization.phone': organization.phone,
@@ -31,8 +30,8 @@ Template.Role_donor.helpers({
 	}
 });
 
-Template.Role_donor.onRendered(function () {
-	// adds active class to labels as appropriate
-	Materialize.updateTextFields();
+Template.Role_recipient.onRendered(function () {
+	$('select').material_select();
 	$('select[name$=address\\.state] :first-child').prop('disabled', true);
+	$('select[name$=acceptedItems] :first-child').prop('disabled', true);
 });
