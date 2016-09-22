@@ -22,7 +22,8 @@ export const insert = new ValidatedMethod({
 			throw new Meteor.Error('donations.insert.notLoggedIn', 'Must be logged in.');
 		}
 
-		Donations.insert(autoformArgs);
+		let donationId = Donations.insert(autoformArgs);
+		match.call({donationId: donationId});
 	}
 });
 
@@ -54,5 +55,23 @@ export const remove = new ValidatedMethod({
 		}
 
 		Donations.remove(donationId);
+	}
+});
+
+export const match = new ValidatedMethod({
+	name: 'donations.match',
+	validate: DONATION_ID_ONLY,
+	run( {donationId} ) {
+		const donation = Donations.findOne(donationId);
+		if(!donation.updatableBy(this.userId)) {
+			throw new Meteor.Error('donations.update.accessDenied',
+				'You don\'t have permission to update this list.');
+		}
+
+		const user = Meteor.users.findOne({'profile.recipient': {$ne : null}});
+
+		Donations.update(donationId, {
+			$set: { status: 'Matched', recipientId: user._id, updatedAt: new Date() },
+		});
 	}
 });

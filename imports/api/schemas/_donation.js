@@ -53,7 +53,20 @@ Donation.schema = new SimpleSchema({
 			type: 'hidden'
 		}
 	},
-
+	recipientId: {
+		type: String,
+		optional: true,
+		autoform: {
+			type: 'hidden'
+		}
+	},
+	driverId: {
+		type: String,
+		optional: true,
+		autoform: {
+			type: 'hidden'
+		}
+	},
 	// Force value to be current user id upon insert
 	// and prevent updates thereafter.
 	createdBy: {

@@ -6,12 +6,13 @@ import { $ } from 'meteor/jquery';
 import { AutoForm } from 'meteor/aldeed:autoform';
 
 import { Donations } from '../../api/donations/donations.js';
-import { remove } from '../../api/donations/methods.js';
+import { remove, match } from '../../api/donations/methods.js';
 
 import './donations.html';
 
 Template.App_donations.onCreated(function() {
 	Meteor.subscribe('donations');
+	Meteor.subscribe('allRecipients');
 	this.addDonation = new ReactiveVar(false);
 });
 
@@ -88,6 +89,7 @@ Template.Donation.events({
 		remove.call({donationId: this._id});
 	},
 	'click .fa-pencil': function(event, instance) {
-		instance.editDonation.set(!instance.editDonation.get());
+		match.call({donationId: this._id});
+		//instance.editDonation.set(!instance.editDonation.get());
 	}
 });
