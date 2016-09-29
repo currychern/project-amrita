@@ -8,7 +8,9 @@ import '../../ui/pages/home.js';
 import '../../ui/pages/dashboard/recent.js';
 import '../../ui/pages/dashboard/profile.js';
 import '../../ui/pages/donations.js';
+import '../../ui/pages/deliver.js';
 import '../../ui/roles/donor.js';
+import '../../ui/roles/driver.js';
 import '../../ui/roles/recipient.js';
 import '../../ui/layouts/main.js';
 import '../../ui/layouts/main-side-nav.js';
@@ -61,7 +63,6 @@ let receive = FlowRouter.group({
 });
 
 receive.route('/', {
-	name: 'App.receive',
 	action() {
 		if (Roles.userIsInRole(Meteor.userId(), 'recipient')) {
 			FlowRouter.go('/dashboard/recent');
@@ -76,6 +77,25 @@ receive.route('/register', {
 	name: 'Role.receipient',
 	action() {
 		BlazeLayout.render('Main_layout', { main: 'Role_recipient'});
+	}
+});
+
+let drive = FlowRouter.group({
+	name: 'drive',
+	prefix: '/drive'
+});
+
+drive.route('/', {
+	name: 'App.deliver',
+	action() {
+		BlazeLayout.render('Main_layout', { main: 'App_deliver'});
+	}
+});
+
+drive.route('/register', {
+	name: 'Role.driver',
+	action() {
+		BlazeLayout.render('Main_layout', { main: 'Role_driver'});
 	}
 });
 

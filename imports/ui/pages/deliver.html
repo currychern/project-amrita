@@ -1,0 +1,22 @@
+<template name="App_deliver">
+  <div class="container page">
+    {{#if isInRole 'driver'}}
+      {{#if myDeliveries.count}}
+        <h4>My Deliveries</h4>
+        {{#each myDeliveries}}
+          {{> Helper_donation_card}}
+        {{/each}}
+      {{/if}}
+      <h4>Donations Awaiting Driver</h4>
+      {{#if awaitDriver.count}}
+        {{#each awaitDriver}}
+          {{> Helper_donation_card extendContext 'pickup' true}}
+        {{/each}}
+      {{else}}
+        No applicable records.
+      {{/if}}
+    {{else}}
+      {{routeToRegistration}}
+    {{/if}}
+  </div>
+</template>

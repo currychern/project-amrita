@@ -82,8 +82,30 @@ export const match = new ValidatedMethod({
 					status: 'Matched',
 					recipientId: user._id,
 					recipientName: user.profile.recipient.organization.name,
-					updatedAt: new Date() },
+					updatedAt: new Date()
+				}
 			});
 		}
+	}
+});
+
+export const pickup = new ValidatedMethod({
+	name: 'donations.pickup',
+	validate: DONATION_ID_ONLY,
+	run( {donationId} ) {
+
+		let user = Meteor.users.findOne(
+			{'_id': this.userId},
+			{fields: {'profile.firstName': 1, 'profile.lastName': 1}}
+		);
+
+		Donations.update(donationId, {
+			$set: {
+				status: 'Confirmed',
+				driverId: this.userId,
+				driverName: user.profile.firstName + ' ' + user.profile.lastName,
+				updatedAt: new Date()
+			}
+		});
 	}
 });

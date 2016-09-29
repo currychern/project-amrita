@@ -37,5 +37,15 @@ Meteor.subscriptions = {
 	},
 	'donationByRecipient': function(userId) {
 		return Donations.find({ recipientId: userId });
+	},
+	'donationByDriver': function(userId) {
+		return Donations.find({ driverId: userId });
+	},
+	'donationByStatus': function(status, userId) {
+		return Donations.find({
+			status: status,
+			createdBy: {$ne: userId},
+			recipientId: {$ne: userId}
+		});
 	}
 };

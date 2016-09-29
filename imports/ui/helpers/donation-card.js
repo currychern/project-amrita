@@ -2,7 +2,7 @@ import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
 
 import { Donations } from '../../api/donations/donations.js';
-import { remove } from '../../api/donations/methods.js';
+import { remove, pickup } from '../../api/donations/methods.js';
 
 Template.Helper_donation_card.onCreated(function() {
 	this.editDonation = new ReactiveVar(false);
@@ -29,5 +29,8 @@ Template.Helper_donation_card.events({
 	},
 	'click .close': function(event, instance) {
 		instance.editDonation.set(!instance.editDonation.get());
+	},
+	'click .pickup': function() {
+		pickup.call({donationId: this._id});
 	}
 });

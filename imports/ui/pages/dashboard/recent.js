@@ -7,6 +7,7 @@ import './recent.html';
 Template.Dashboard_recent.onCreated(function() {
 	Meteor.subscribe('donationByDonor');
 	Meteor.subscribe('donationByRecipient');
+	Meteor.subscribe('donationByDriver');
 });
 
 Template.Dashboard_recent.helpers({
@@ -18,6 +19,11 @@ Template.Dashboard_recent.helpers({
 	incomingDonations: function() {
 		return Meteor.helperFunctions.collectionToHandlebarIterable(
       Meteor.subscriptions.donationByRecipient(Meteor.userId()).fetch(), 2
+    );
+	},
+	myDeliveries: function() {
+		return Meteor.helperFunctions.collectionToHandlebarIterable(
+      Meteor.subscriptions.donationByDriver(Meteor.userId()).fetch(), 2
     );
 	}
 });

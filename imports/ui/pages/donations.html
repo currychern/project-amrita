@@ -5,9 +5,14 @@
         {{> Add_donation}}
       {{else}}
         <button class="btn new-donation">New Donation</button>
-        {{#each myDonations}}
-          {{> Helper_donation_card extendContext 'crud' true}}
-        {{/each}}
+        <h4>My Donations</h4>
+        {{#if myDonations.count}}
+          {{#each myDonations}}
+            {{> Helper_donation_card extendContext 'crud' true}}
+          {{/each}}
+        {{else}}
+          No applicable records.
+        {{/if}}
       {{/if}}
     {{else}}
       {{routeToRegistration}}

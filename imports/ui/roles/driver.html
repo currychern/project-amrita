@@ -1,0 +1,14 @@
+<template name="Role_driver">
+  <div class="container page">
+    {{#if isInRole 'driver'}}
+      {{routeToParent}}
+    {{else}}
+      {{>quickForm
+        schema=driver
+        id="addDriverForm"
+        type="method"
+        meteormethod="register.driver"
+        class="driver"}}
+    {{/if}}
+  </div>
+</template>
