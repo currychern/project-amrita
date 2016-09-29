@@ -1,11 +1,9 @@
 import { Meteor } from 'meteor/meteor';
 
-import { Donations } from '../donations.js';
-
-Meteor.publish('donations', function () {
-	return Donations.find();
+Meteor.publish('donationByDonor', function () {
+	return Meteor.subscriptions.donationByDonor(this.userId);
 });
 
-Meteor.publish('allRecipients', function () {
-	return Meteor.users.find({ 'profile.recipient': {$ne : null} });
+Meteor.publish('donationByRecipient', function () {
+	return Meteor.subscriptions.donationByRecipient(this.userId);
 });

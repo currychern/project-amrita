@@ -1,0 +1,10 @@
+<template name="Main_side_nav_layout">
+  <div class="hasSideNav">
+    {{> Header}}
+    {{> Side_nav}}
+    <main class="main-layout">
+      {{> Template.dynamic template=main}}
+    </main>
+    {{> Footer}}
+  </div>
+</template>

@@ -1,0 +1,10 @@
+<template name="Helper_nav_item">
+  <li class="{{activeClass}}">
+    <a href="{{this.href}}">
+      {{#if this.icon}}
+        <i class="material-icons">{{this.icon}}</i>
+      {{/if}}
+      {{this.name}}
+    </a>
+  </li>
+</template>

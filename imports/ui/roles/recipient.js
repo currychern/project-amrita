@@ -32,6 +32,5 @@ Template.Role_recipient.helpers({
 
 Template.Role_recipient.onRendered(function () {
 	$('select').material_select();
-	$('select[name$=address\\.state] :first-child').prop('disabled', true);
-	$('select[name$=acceptedItems] :first-child').prop('disabled', true);
+	$('select :first-child').prop('disabled', true);
 });

@@ -35,8 +35,6 @@ kadira:blaze-layout
 reactive-dict
 underscore
 
-fortawesome:fontawesome
-matb33:bootstrap-glyphicons
 fourseven:scss
 poetic:materialize-scss
 

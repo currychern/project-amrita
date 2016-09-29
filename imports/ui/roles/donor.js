@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
-import { Materialize } from 'meteor/poetic:materialize-scss';
 import { $ } from 'meteor/jquery';
+import { Materialize } from 'meteor/poetic:materialize-scss';
 
 import { Donor } from '../../api/schemas/_donor.js';
 
@@ -34,5 +34,5 @@ Template.Role_donor.helpers({
 Template.Role_donor.onRendered(function () {
 	// adds active class to labels as appropriate
 	Materialize.updateTextFields();
-	$('select[name$=address\\.state] :first-child').prop('disabled', true);
+	$('select :first-child').prop('disabled', true);
 });

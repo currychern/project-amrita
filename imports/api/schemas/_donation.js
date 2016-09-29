@@ -60,7 +60,21 @@ Donation.schema = new SimpleSchema({
 			type: 'hidden'
 		}
 	},
+	recipientName: {
+		type: String,
+		optional: true,
+		autoform: {
+			type: 'hidden'
+		}
+	},
 	driverId: {
+		type: String,
+		optional: true,
+		autoform: {
+			type: 'hidden'
+		}
+	},
+	driverName: {
 		type: String,
 		optional: true,
 		autoform: {

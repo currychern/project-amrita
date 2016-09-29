@@ -1,0 +1,24 @@
+<template name="Dashboard_recent">
+  <div class="container page">
+    <h3>Outgoing Donations</h3>
+    {{#each outgoingDonations}}
+      <div class="row">
+        {{#each this}}
+          <div class="col s12 m6 l6">
+            {{> Helper_donation_card}}
+          </div>
+        {{/each}}
+      </div>
+    {{/each}}
+    <h3>Incoming Donations</h3>
+    {{#each incomingDonations}}
+      <div class="row">
+        {{#each this}}
+          <div class="col s12 m6 l6">
+            {{> Helper_donation_card}}
+          </div>
+        {{/each}}
+      </div>
+    {{/each}}
+  </div>
+</template>

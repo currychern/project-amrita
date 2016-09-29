@@ -68,10 +68,22 @@ export const match = new ValidatedMethod({
 				'You don\'t have permission to update this list.');
 		}
 
-		const user = Meteor.users.findOne({'profile.recipient': {$ne : null}});
+		if(Meteor.isServer) {
+			//Get users (not including the current user) who have a recipient role
+			let users = Meteor.users.find(
+				{'_id': {$ne : Meteor.userId()}, 'roles': {$in: ['recipient']}},
+				{fields: {'_id': 1, 'profile.recipient.organization.name': 1}}
+			).fetch();
 
-		Donations.update(donationId, {
-			$set: { status: 'Matched', recipientId: user._id, updatedAt: new Date() },
-		});
+			let user = users[Math.floor(Math.random() * users.length)];
+
+			Donations.update(donationId, {
+				$set: {
+					status: 'Matched',
+					recipientId: user._id,
+					recipientName: user.profile.recipient.organization.name,
+					updatedAt: new Date() },
+			});
+		}
 	}
 });

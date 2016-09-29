@@ -5,8 +5,8 @@
         {{> Add_donation}}
       {{else}}
         <button class="btn new-donation">New Donation</button>
-        {{#each donationList}}
-          {{> Donation}}
+        {{#each myDonations}}
+          {{> Helper_donation_card extendContext 'crud' true}}
         {{/each}}
       {{/if}}
     {{else}}
@@ -16,45 +16,17 @@
 </template>
 
 <template name="Add_donation">
-  <div class="form-add">
-    <div class="close-add-donation">
-      CLOSE<i class="material-icons">close</i>
-    </div>
-    {{> quickForm
-      collection=donations
-      id="insertDonationForm"
-      doc=prepopulate
-      type="method"
-      meteormethod="donations.insert"
-      buttonContent="Next"
-    }}
-  </div>
-</template>
-
-<template name="Donation">
-  <article class="donation">
-    {{#if editDonation}}
-      <h3>Edit Donation</h3>
+  <div class="card-panel">
+    <div class="card-content">
+      <i class="material-icons clickable grey-text right close">close</i>
       {{> quickForm
         collection=donations
-        doc=this
-        id=updateDonationId
-        type="method-update"
-        meteormethod="donations.update"
-        singleMethodArgument=true
-        autosave=true
+        id="insertDonationForm"
+        doc=prepopulate
+        type="method"
+        meteormethod="donations.insert"
+        buttonContent="Next"
       }}
-    {{else}}
-      <h3>{{nickname}}</h3>
-      <h4>({{type}})</h4>
-      <ul>
-        {{#each foods}}
-          <li class="food">{{name}} - {{amount}}</li>
-        {{/each}}
-      </ul>
-      <a href="/donation/{{_id}}">View Details</a>
-    {{/if}}
-    <i class="fa fa-pencil"></i>
-    <i class="fa fa-trash"></i>
-  </article>
+    </div>
+  </div>
 </template>

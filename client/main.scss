@@ -1,5 +1,58 @@
 // Home
+@import "{}/client/stylesheets/palette.scss";
+@import "{poetic:materialize-scss}/sass/materialize.scss";
 
+$side-nav-width: 175px;
+
+/*****************************************************
+  ~SIDE NAV
+*****************************************************/
+.hasSideNav {
+  .side-nav {
+    padding-top: 100px;
+    width: $side-nav-width;
+  }
+
+  header, main, footer {
+    padding-left: $side-nav-width;
+  }
+
+  @media only screen and (max-width : 992px) {
+    header, main, footer {
+      padding-left: 0;
+    }
+  }
+
+  .container {
+    width: 85%;
+  }
+
+  i {
+    vertical-align: middle;
+    padding-right: 30px;
+    padding-bottom: 27px;
+  }
+}
+
+/*****************************************************
+  ~HEADER
+*****************************************************/
+header {
+  .nav-wrapper {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .logo {
+    a.hover {
+      text-decoration: none;
+    }
+  }
+}
+
+/*****************************************************
+  ~GENERAL
+*****************************************************/
 .billboard {
   text-align: center;
   padding-top: 13%;
@@ -7,65 +60,68 @@
   margin-bottom: 50px;
 }
 
-// Header
-.logo {
-  padding-left: 20px;
-  a.hover {
-    text-decoration: none;
-  }
-}
-
-#nav-mobile {
-  padding-right: 20px;
-}
-
-// Modal
-.modal-container {
-  width: 90%;
-  margin-left: auto;
-  margin-right: auto;
-  padding-top: 20px;
-
-}
-
-.close {
-  position: absolute;
-  top: 0;
-  right: 0;
-  display: block;
-  cursor: pointer;
-  font-size: 2em;
-  padding: 20px;
-}
-
-@import "{}/client/stylesheets/palette.scss";
-@import "{poetic:materialize-scss}/sass/materialize.scss";
-
-.modal {
-  max-height: 80%;
-}
-// Sign In Form
-.at-input:not(:nth-of-type(6)) {
-  label {
-    display: none;
-  }
-}
-
 .page {
   padding-top: 50px;
   padding-bottom: 50px;
 }
 
-.close-add-donation {
-  display: inline-flex;
+i {
   vertical-align: middle;
-  float: right;
 }
 
+.clickable {
+  cursor: pointer;
+  @extend .text-lighten-2;
+  &:hover {
+    @extend .text-darken-1;
+  }
+}
+
+.tag {
+  padding: 5px;
+}
+
+/*****************************************************
+  ~AUTOFORM
+*****************************************************/
 form {
+  .btn {
+    display: inline-flex;
+    vertical-align: middle;
+  }
+
   .red-text {
+    font-size: 0.8em;
     i {
       font-size: 1em;
     }
+  }
+}
+
+/*****************************************************
+  ~MODAL
+*****************************************************/
+.modal {
+  max-height: 80%;
+
+  .container {
+    padding-top: 20px;
+    width: 85%;
+  }
+
+  .close {
+    font-size: 2em;
+    padding-top: 20px;
+    padding-right: 40px;
+  }
+
+  .at-input:not(:nth-of-type(6)) {
+    label {
+      display: none;
+    }
+  }
+
+  .at-btn {
+    @extend .btn
   }
 }

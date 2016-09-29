@@ -1,26 +1,29 @@
 <template name="Header">
-  <nav>
-    <div class="nav-wrapper z-depth-1">
-      <div class="logo"><a href="#!" class="brand-logo">Project Amrita</a></div>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="/">Home</a></li>
-        {{#if isInRole 'user'}}
-          <li><a href="/donate">Donate</a></li>
-          <li><a href="/receive">Receive</a></li>
-        {{/if}}
-        {{#if isInRole 'admin'}}
-          <li><a href="/dashboard">Dashboard</a></li>
-        {{/if}}
-        {{#if currentUser}}
-          <a class="signout">Sign Out</a>
-        {{else}}
-          <li>
-            <a class="modal-trigger" data-target="signin">Sign In</a>
-          </li>
-        {{/if}}
-      </ul>
-    </div>
-  </nav>
+  <header>
+    <nav class="top-nav">
+      <div class="nav-wrapper z-depth-1">
+        <div class="logo"><a href="#!" class="brand-logo">Project Amrita</a></div>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          {{> Helper_nav_item href='/' name='Home'}}
+          {{#if isInRole 'user'}}
+            {{> Helper_nav_item href='/donate' name='Donate'}}
+            {{> Helper_nav_item href='/receive' name='Receive'}}
+            {{> Helper_nav_item href='/dashboard' name='Dashboard'}}
+          {{/if}}
+          {{#if isInRole 'admin'}}
+            {{> Helper_nav_item href='/accounts' name='User Accounts'}}
+          {{/if}}
+          {{#if currentUser}}
+            <a class="signout">Sign Out</a>
+          {{else}}
+            <li>
+              <a class="modal-trigger" data-target="signin">Sign In</a>
+            </li>
+          {{/if}}
+        </ul>
+      </div>
+    </nav>
+  </header>
 
   <div id="signin" class="modal">
     {{> Accounts_signin}}

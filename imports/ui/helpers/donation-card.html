@@ -1,0 +1,36 @@
+<template name="Helper_donation_card">
+  <div class="card-panel">
+    <div class="card-content">
+      {{#if edit}}
+        <i class="material-icons clickable grey-text right close">close</i>
+        {{> quickForm
+          collection=donations
+          doc=this
+          id=donationId
+          type="method-update"
+          meteormethod="donations.update"
+          singleMethodArgument=true
+          autosave=true
+        }}
+      {{else}}
+        {{#if crud}}
+          <div class="crud-group right">
+            <i class="material-icons clickable cyan-text edit">mode_edit</i>
+            <i class="material-icons clickable red-text delete">delete</i>
+          </div>
+        {{/if}}
+        <h5>{{nickname}}</h5>
+        <span>{{type}}</span>
+        <ul>
+          {{#each foods}}
+            <li>{{name}} - {{amount}}</li>
+          {{/each}}
+        </ul>
+        <p><i class="material-icons">directions_car</i>{{vehicle}}</p>
+        <p><i class="material-icons">event</i>{{pickupTime}}</p>
+        <a href="/donation/{{_id}}">View Details</a>
+        <div class="tag yellow right">{{status}}</div>
+      {{/if}}
+    </div>
+  </div>
+</template>

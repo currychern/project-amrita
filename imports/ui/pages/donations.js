@@ -1,24 +1,23 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
-import { ReactiveVar } from 'meteor/reactive-var';
 import { Blaze } from 'meteor/blaze';
+import { ReactiveVar } from 'meteor/reactive-var';
 import { $ } from 'meteor/jquery';
 import { AutoForm } from 'meteor/aldeed:autoform';
 
 import { Donations } from '../../api/donations/donations.js';
-import { remove, match } from '../../api/donations/methods.js';
 
+import '../helpers/donation-card.js';
 import './donations.html';
 
 Template.App_donations.onCreated(function() {
-	Meteor.subscribe('donations');
-	Meteor.subscribe('allRecipients');
+	Meteor.subscribe('donationByDonor');
 	this.addDonation = new ReactiveVar(false);
 });
 
 Template.App_donations.helpers({
-	donationList: function() {
-		return Donations.find();
+	myDonations: function() {
+		return Meteor.subscriptions.donationByDonor(Meteor.userId());
 	},
 	addDonation: function() {
 		return Template.instance().addDonation.get();
@@ -57,39 +56,13 @@ AutoForm.addHooks(['insertDonationForm'], {
 });
 
 Template.Add_donation.onRendered( function () {
-	$('select[name$=type] :first-child').prop('disabled', true);
+	$('select :first-child').prop('disabled', true);
 });
 
 Template.Add_donation.events({
-	'click .close-add-donation': function() {
+	'click .close': function() {
 		let parent = $('.container')[0];
 		let parentInstance = Blaze.getView(parent).templateInstance();
 		parentInstance.addDonation.set(false);
-	}
-});
-
-Template.Donation.onCreated(function() {
-	this.editDonation = new ReactiveVar(false);
-});
-
-Template.Donation.helpers({
-	donations: function() {
-		return Donations;
-	},
-	updateDonationId: function() {
-		return this._id;
-	},
-	editDonation: function() {
-		return Template.instance().editDonation.get();
-	}
-});
-
-Template.Donation.events({
-	'click .fa-trash': function() {
-		remove.call({donationId: this._id});
-	},
-	'click .fa-pencil': function(event, instance) {
-		match.call({donationId: this._id});
-		//instance.editDonation.set(!instance.editDonation.get());
 	}
 });
