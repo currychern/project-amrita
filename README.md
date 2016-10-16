@@ -12,17 +12,16 @@
 
 1. `Register` - Register as a donor, recipient, and/or driver.
 
-  ![MyDonations](https://raw.githubusercontent.com/currychern/project-amrita/master/public/assets/my_donations.png)
-
 2. `Donate` - Allows donors to donate food and automatches a recipient.
+
+  ![MyDonations](https://raw.githubusercontent.com/currychern/project-amrita/master/public/assets/my_donations.png)
 
 3. `Drive` - Shows donations that are in need of a driver to deliver.
 
-  ![RecentDonations](https://raw.githubusercontent.com/currychern/project-amrita/master/public/assets/recent_donations.png)
-
-  &nbsp;
-
   ![UserProfile](https://raw.githubusercontent.com/currychern/project-amrita/master/public/assets/user_profile.png)
+
+  
+  ![RecentDonations](https://raw.githubusercontent.com/currychern/project-amrita/master/public/assets/recent_donations.png)
 
 4. `Dashboard` - Shows recent activity, your personal profile, stats, and more.
 
