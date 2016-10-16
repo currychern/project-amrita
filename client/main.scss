@@ -67,6 +67,7 @@ header {
 
 i {
   vertical-align: middle;
+  color: teal;
 }
 
 .clickable {
@@ -95,6 +96,24 @@ form {
     i {
       font-size: 1em;
     }
+  }
+}
+
+/*****************************************************
+  ~PROFILE
+*****************************************************/
+.profile {
+  .donor {
+    @extend .green;
+  }
+  .recipient {
+    @extend .purple;
+  }
+  i {
+    position:absolute;
+  }
+  .content {
+    padding-left: 30px;
   }
 }
 

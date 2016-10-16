@@ -1,9 +1,62 @@
 <template name="Dashboard_profile">
   <div class="container page">
     {{#with userProfile}}
-      {{firstName}} {{lastName}}
-      {{phone}}
-      {{email}}
+      <div class="card-panel">
+        <div class="card-content profile-icon">
+          <i class="material-icons large">account_circle</i>
+          <div>
+            {{firstName}} {{lastName}}<br>
+            {{userAge}}<br>
+            {{userEmail}}
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s12 m6 l6">
+          {{#with donor.organization}}
+            {{>Organization_profile extendContext 'role' 'donor'}}
+          {{/with}}
+        </div>
+        <div class="col s12 m6 l6">
+          {{#with recipient.organization}}
+            {{>Organization_profile extendContext 'role' 'recipient'}}
+          {{/with}}
+        </div>
+      </div>
     {{/with}}
+  </div>
+</template>
+
+<template name="Organization_profile">
+  <div class="card-panel">
+    <div class="card-content profile">
+      <div class="chip {{role}} white-text">
+        {{role}}
+      </div>
+      <p>
+        <i class="material-icons">business</i>
+        <div class="content">{{name}}</div>
+      </p>
+      <p>
+        <i class="material-icons">phone</i>
+        <div class="content">{{phone}}</div>
+      </p>
+      <p>
+        <i class="material-icons">email</i>
+        <div class="content">{{email}}</div>
+      </p>
+      {{#with address}}
+        <p>
+          <i class="material-icons">place</i>
+          <div class="content">
+            {{street1}}<br>
+            {{#if street2}}
+              {{street2}}<br>
+            {{/if}}
+            {{city}}, {{state}} {{zip}}
+          </div>
+        </p>
+      {{/with}}
+    </div>
   </div>
 </template>
